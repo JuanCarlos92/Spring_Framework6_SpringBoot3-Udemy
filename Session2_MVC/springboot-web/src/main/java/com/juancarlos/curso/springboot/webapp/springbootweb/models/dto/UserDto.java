@@ -6,6 +6,7 @@ public class UserDto {
     
     private String title;
     private User user;
+
     public String getTitle() {
         return title;
     }
@@ -19,5 +20,4 @@ public class UserDto {
         this.user = user;
     }
 
-    
 }

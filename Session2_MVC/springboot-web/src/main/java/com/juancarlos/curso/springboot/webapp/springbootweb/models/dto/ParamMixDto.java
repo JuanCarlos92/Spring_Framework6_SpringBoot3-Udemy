@@ -22,5 +22,4 @@ public class ParamMixDto {
         this.code = code;
     }
 
-    
 }

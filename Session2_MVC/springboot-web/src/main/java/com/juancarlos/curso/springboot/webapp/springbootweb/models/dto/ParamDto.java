@@ -13,5 +13,4 @@ public class ParamDto {
         this.message = message;
     }
 
-    
 }
