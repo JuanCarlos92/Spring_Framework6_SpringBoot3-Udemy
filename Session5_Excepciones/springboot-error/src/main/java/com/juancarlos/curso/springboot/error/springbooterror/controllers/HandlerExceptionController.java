@@ -44,20 +44,20 @@ public class HandlerExceptionController {
         return error;
     }
 
-    @ExceptionHandler({ NumberFormatException.class,
-            HttpMessageNotWritableException.class,
-            UserNotFountException.class })
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Map<String, Object> userNotFountException(Exception ex) {
+    // // // @ExceptionHandler({ NumberFormatException.class,
+    // // //         HttpMessageNotWritableException.class,
+    // // //         UserNotFountException.class })
+    // // // @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    // // // public Map<String, Object> userNotFountException(Exception ex) {
 
-        Map<String, Object> error = new HashMap<>();
-        error.put("date", new Date());
-        error.put("error", "El usuario o role no existe!");
-        error.put("message", ex.getMessage());
-        error.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+    // // //     Map<String, Object> error = new HashMap<>();
+    // // //     error.put("date", new Date());
+    // // //     error.put("error", "El usuario o role no existe!");
+    // // //     error.put("message", ex.getMessage());
+    // // //     error.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 
-        return error;
-    }
+    // // //     return error;
+    // // // }
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<Error> notFoundEx(NoHandlerFoundException e) {
