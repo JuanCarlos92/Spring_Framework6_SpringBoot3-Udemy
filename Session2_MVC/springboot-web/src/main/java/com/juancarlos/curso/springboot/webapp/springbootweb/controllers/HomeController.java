@@ -11,5 +11,6 @@ public class HomeController {
 
         return "redirect:/list"; // redirige a la ruta /list
         // return "forward:/list";
+        
     }
 }
