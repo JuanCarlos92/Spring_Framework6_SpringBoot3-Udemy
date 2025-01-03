@@ -24,24 +24,30 @@ export class ProductComponent implements OnInit {
     this.service.findAll().subscribe(products => this.products = products); // Se subscribe a products
   }
 
-  addProduct(product: Product) {
+  addProduct(product: Product): void {
 
     if (product.id > 0) {
-      this.products = this.products.map(prod => {
-        if (prod.id == product.id) {
-          return { ...product };
-        }
-        return prod;
-      });
-    } else {
-      // product.id = new Date().getTime();
-      // this.products.push(product);
+      this.service.update(product).subscribe(productUpdated => {
 
-      this.products = [... this.products, { ...product, id: new Date().getTime() }];
+        this.products = this.products.map(prod => {
+          if (prod.id == product.id) {
+            return { ...productUpdated };
+          }
+          return prod;
+        });
+      });
+
+    } else {
+      this.service.create(product).subscribe(productNew => {
+
+        // this.products.push( {...productNew});
+        this.products = [... this.products, { ...productNew }];
+      })
     }
+    this.productSelected = new Product();
   }
 
-  onUpdateProduct(productRow: Product) {
-    this.productSelected = productRow;
+  onUpdateProduct(productRow: Product): void {
+    this.productSelected = { ...productRow };
   }
 }

@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class FormComponent {
 
-@Input() product: Product = {
+  @Input() product: Product = {
     id: 0,
     name: '',
     description: '',
@@ -24,5 +24,15 @@ export class FormComponent {
   onSubmit(): void {
     this.newProductEvent.emit(this.product); // <-- emite el product 
     console.log(this.product);
+  }
+
+  //Limpiar form
+  clean(): void {
+    this.product = {
+      id: 0,
+      name: '',
+      description: '',
+      price: 0
+    };
   }
 }
