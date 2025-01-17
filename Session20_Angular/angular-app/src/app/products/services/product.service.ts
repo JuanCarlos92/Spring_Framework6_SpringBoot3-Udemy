@@ -29,7 +29,7 @@ export class ProductService {
     // return of(this.products);
     return this.http.get<Product[]>(this.url).pipe(map((response: any) => response._embedded.products as Product[]),
     );
-    
+
   }
   create(product: Product): Observable<Product> {
     return this.http.post<Product>(this.url, product);
@@ -37,5 +37,8 @@ export class ProductService {
 
   update(product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.url}/${product.id}`, product);
+  }
+  remove(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`)
   }
 }

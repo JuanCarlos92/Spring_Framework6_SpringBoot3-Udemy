@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../models/product';
-import { FormsModule } from '@angular/forms';
+import { Product } from '../models/product';
+import { FormsModule, NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 //Componente HIJO
 @Component({
   selector: 'product-form',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
@@ -21,9 +22,13 @@ export class FormComponent {
   //Crea un EventEmitter() 
   @Output() newProductEvent = new EventEmitter();
 
-  onSubmit(): void {
-    this.newProductEvent.emit(this.product); // <-- emite el product 
-    console.log(this.product);
+  onSubmit(productForm: NgForm): void {
+    if (productForm.valid) {
+      this.newProductEvent.emit(this.product); // <-- emite el product 
+      console.log(this.product);
+    }
+    productForm.reset();
+    productForm.resetForm();
   }
 
   //Limpiar form
